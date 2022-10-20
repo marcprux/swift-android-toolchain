@@ -1,0 +1,69 @@
+name: Build toochain for Android
+
+on: push
+
+env:
+  NDK_VERSION: 21.4.7075529
+
+jobs:
+  build:
+    name: Swift toolchain for Android
+    runs-on: macOS-12
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: '13.3.1'
+      - uses: actions/checkout@master
+
+      - uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r25b
+
+
+      - name: Download dependencies
+        run: |
+          brew update
+          brew install cmake ninja autoconf automake libtool pkg-config git-lfs wget
+
+      - name: Setup NDK
+        run: |
+          
+          wget -q https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip
+          
+          unzip -qq android-ndk-r21e-darwin-x86_64.zip -d ./$NDK_VERSION
+          rm -rf android-ndk-r21e-darwin-x86_64.zip
+
+          sudo mkdir -p /usr/local/ndk
+          sudo ln -vsif ${GITHUB_WORKSPACE}/$NDK_VERSION/android-ndk-r21e /usr/local/ndk/$NDK_VERSION 
+
+          echo $(ls /usr/local/ndk/$NDK_VERSION)
+          echo $(ls /Users/runner/Library/Android/sdk/ndk/)
+          echo $(ls /Users/runner/Library/Android/sdk/ndk/25.1.8937393)
+
+      - name: Init Caching
+        uses: ./.github/actions/cache-always
+        with:
+          key: swift-android-toolchain-cache
+          path: |
+            ./ToolChain
+
+      - name: Check before build
+        run: |
+          which cmake
+          which ninja
+          which autoconf
+          which aclocal
+          which glibtool
+          which pkg-config
+          which git-lfs
+          xcode-select --print-path
+      - name: Build
+        run: |
+          node main.js bootstrap
+
+      - name: Archiving
+        uses: actions/upload-artifact@v3
+        with:
+          name: Toolchain build archive
+          path: ./ToolChain/swift-android-toolchain.tar.gz
+

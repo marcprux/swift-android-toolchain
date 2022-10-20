@@ -1,17 +1,8 @@
-# swift-everywhere-toolchain
+# Swift Toolchain for Android
 
-Keeping the readme intact will show respect to the repository owner. Check [HowToUse.md](./HowToUse.md)
+This repo provides toolchain than can compile `swift` packages to `.so` files that can be use with NDK in Android.
 
-## My Town
-
-This Open source project won't be updated until Kremlin will stop war in Ukraine and repair damages made in towns: Irpin, Bucha, Gostomel. If this won't happen during next 6 months (until 1 September 2022), then this project will be removed from public space.
-
-![Town of Irpin after Airstrike](./Media/irpin.jpg "Town of Irpin after Airstrike")
-
-See also:
-
-- [Russian invaders bomb high-rise building in Irpin west of Kyiv](https://www.pravda.com.ua/eng/news/2022/03/2/7327381/)
-- [In the morning, the invaders launched two air strikes on Irpin, a residential building was destroyed](https://gordonua.com/news/war/utrom-okkupanty-nanesli-dva-aviaudara-po-irpenyu-razrushen-zhiloy-dom-foto-i-video-1598067.html)
+GitHub action files are used to build the build tools. Here are the steps to follow if you want to build it locally
 
 ## Requirements
 
@@ -36,7 +27,7 @@ Keep tools like `CMake` and `ninja` up to date.
 
 ## Using pre-built toolchain
 
-Build of complete toolchain takes ~1.5h. Instead of building it you can just download and use already pre-built package from [Releases](https://github.com/vgorloff/swift-everywhere-toolchain/releases) page.
+Build of complete toolchain takes ~1.5h. Instead of building it you can just download and use already pre-built package from Action artifact.
 
 ## Setup and Build
 
@@ -83,10 +74,3 @@ Build of complete toolchain takes ~1.5h. Instead of building it you can just dow
 
 6. Once the build completed, toolchain will be saved to folder `ToolChain/swift-android-toolchain` and compressed into archive `ToolChain/swift-android-toolchain.tar.gz`.
 
-## Usage
-
-Please refer file [Assets/Readme.md](Assets/Readme.md) to see how to compile Swift files or build Swift packages using Toolchain.
-
-## Sample Projects
-
-Sample projects can be found in a separate [swift-everywhere-samples](https://github.com/vgorloff/swift-everywhere-samples) repository. Please look into `Readme.md` in that repository to get information about how to configure and build sample projects.
