@@ -74,3 +74,10 @@ Build of complete toolchain takes ~1.5h. Instead of building it you can just dow
 
 6. Once the build completed, toolchain will be saved to folder `ToolChain/swift-android-toolchain` and compressed into archive `ToolChain/swift-android-toolchain.tar.gz`.
 
+7. To skip the `macOS cannot verify that this app is free from malware.` popup(s) for all the files you can run this script in extracted `swift-android-toolchain` folder 
+
+    ```
+    cd swift-android-toolchain
+    find . -type f -name "*.*" -exec xattr -d com.apple.quarantine $(echo {}) \;
+    ```
+
