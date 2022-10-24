@@ -54,6 +54,7 @@ const SAPBuilder = require("./lib/Builders/SAPBuilder");
 const YAMSBuilder = require("./lib/Builders/YAMSBuilder");
 const SwiftDriverBuilder = require("./lib/Builders/SwiftDriverBuilder");
 const SwiftCryptoBuilder = require("./lib/Builders/SwiftCryptoBuilder");
+const CBLASBuilder = require("./lib/Builders/CBLASBuilder");
 
 module.exports = class Automation extends Tool {
   run() {
@@ -108,6 +109,8 @@ module.exports = class Automation extends Tool {
   runComponentAction(component, action) {
     if (component == "llvm") {
       new LLVMBuilder().runAction(action);
+    } else if (component == "cblas") {
+      this.archs.forEach((item) => new CBLASBuilder(item).runAction(action));
     } else if (component == "stdlib") {
       this.archs.forEach((item) => new SwiftStdLibBuilder(item).runAction(action));
     } else if (component == "dispatch") {
@@ -185,6 +188,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("stdlib", action);
     this.runComponentAction("dispatch", action);
     this.runComponentAction("foundation", action);
+    this.runComponentAction("cblas", action);
   }
 
   /** @private */
@@ -205,6 +209,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("sd", "clean");
     this.runComponentAction("sap", "clean");
     this.runComponentAction("yams", "clean");
+    this.runComponentAction("cblas", "clean");
   }
 
   /** @private */
@@ -227,6 +232,7 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.sc));
     paths.push(Paths.sourcesDirPath(Components.sd));
     paths.push(Paths.sourcesDirPath(Components.yams));
+    paths.push(Paths.sourcesDirPath(Components.cblas));
     return paths;
   }
 
