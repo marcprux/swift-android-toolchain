@@ -79,5 +79,6 @@ Build of complete toolchain takes ~1.5h. Instead of building it you can just dow
     ```
     cd swift-android-toolchain
     find . -type f -name "*.*" -exec xattr -d com.apple.quarantine $(echo {}) \;
+    find * -type f -name "*" -exec xattr -d com.apple.quarantine $(echo {}) \;
     ```
 
