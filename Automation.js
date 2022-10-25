@@ -163,6 +163,7 @@ module.exports = class Automation extends Tool {
 
   /** @private */
   stage1(action) {
+    this.runComponentAction("cblas", action);
     this.runComponentAction("llvm", action);
     this.runComponentAction("icu", action);
     this.runComponentAction("xml", action);
@@ -188,7 +189,6 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("stdlib", action);
     this.runComponentAction("dispatch", action);
     this.runComponentAction("foundation", action);
-    this.runComponentAction("cblas", action);
   }
 
   /** @private */
