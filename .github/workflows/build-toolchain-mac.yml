@@ -20,10 +20,17 @@ jobs:
         with:
           ndk-version: r25b
 
+      - name: Cache Homebrew
+        uses: ./.github/actions/cache-always
+        with:
+          key: swift-android-homebrew-cache
+          path: |
+            /usr/local/Homebrew
+
       - name: Download dependencies
         run: |
           brew update
-          brew install cmake ninja autoconf automake libtool pkg-config git-lfs wget
+          brew install cmake ninja autoconf automake libtool pkg-config git-lfs wget curl gfortran android-platform-tools
 
       - name: Setup NDK
         run: |
@@ -40,9 +47,7 @@ jobs:
           echo $(ls /Users/runner/Library/Android/sdk/ndk/)
           echo $(ls /Users/runner/Library/Android/sdk/ndk/25.1.8937393)
 
-      - name: Init Caching
-        # disable caching for testing
-        if: false
+      - name: Cache Toolchain
         uses: ./.github/actions/cache-always
         with:
           key: swift-android-toolchain-cache
