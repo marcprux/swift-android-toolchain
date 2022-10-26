@@ -357,8 +357,8 @@ module.exports = class Automation extends Tool {
   verifyXcodeAndExitIfNeeded() {
     var xcodeVersion = cp.execSync("xcodebuild -version").toString().trim();
     let version = xcodeVersion.split("\n").filter((comp) => comp.includes("Xcode"))[0];
-    if (!version.includes(13)) {
-      this.print("Please use Xcode 13.", 31);
+    if (!version.includes(13) && !version.includes(14)) {
+      this.print("Please use Xcode 13 or 14.", 31);
       this.print("Your Xcode version seems too old or too new:", 36);
       this.print(xcodeVersion, 32);
       process.exit(1);
