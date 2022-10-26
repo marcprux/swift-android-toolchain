@@ -1,5 +1,5 @@
 name: Build toochain for Android
-on: [push, workflow_dispatch]
+on: [push, release, workflow_dispatch]
 
 env:
   NDK_VERSION: 21.4.7075529
@@ -15,12 +15,12 @@ jobs:
           # not yet working
           #xcode-version: '14.0.1'
           xcode-version: '13.3.1'
+
       - uses: actions/checkout@master
 
       - uses: nttld/setup-ndk@v1
         with:
           ndk-version: r25b
-
 
       - name: Download dependencies
         run: |
@@ -43,6 +43,8 @@ jobs:
           echo $(ls /Users/runner/Library/Android/sdk/ndk/25.1.8937393)
 
       - name: Init Caching
+        # disable caching for testing
+        if: false
         uses: ./.github/actions/cache-always
         with:
           key: swift-android-toolchain-cache
