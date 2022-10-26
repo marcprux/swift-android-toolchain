@@ -12,8 +12,9 @@ jobs:
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '14.0.1'
-          #xcode-version: '13.3.1'
+          # not yet working
+          #xcode-version: '14.0.1'
+          xcode-version: '13.3.1'
       - uses: actions/checkout@master
 
       - uses: nttld/setup-ndk@v1

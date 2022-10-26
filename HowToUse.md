@@ -53,8 +53,8 @@ Build of complete toolchain takes ~1.5h. Instead of building it you can just dow
 3. Clone this repository.
 
    ```bash
-   git clone https://github.com/vgorloff/swift-everywhere-toolchain.git
-   cd swift-everywhere-toolchain
+   git clone https://github.com/marcprux/swift-android.git
+   cd swift-android
    ```
 
 4. Create a symbolic link to NDK installation directory.
