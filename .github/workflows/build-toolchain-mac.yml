@@ -33,9 +33,9 @@ jobs:
           - ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-          - ndk: 'r22b'
-            ndkversion: '22.1.7171670'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r22b-darwin-x86_64.zip'
+          #- ndk: 'r22b'
+            #ndkversion: '22.1.7171670'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r22b-darwin-x86_64.zip'
           #- ndk: 'r23c'
             #ndkversion: '23.2.8568313'
             #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r23c-darwin.dmg'
@@ -129,10 +129,10 @@ jobs:
     env:
       NDK_VERSION: ${{ matrix.ndkversion }}
 
-    concurrency:
-      group: ${{ matrix.ndk }}-${{ matrix.swift }}-${{ matrix.xcode }}-${{ github.head_ref || github.run_id }}
+      #concurrency:
+      #group: ${{ matrix.ndk }}-${{ matrix.swift }}-${{ matrix.xcode }}-${{ github.head_ref || github.run_id }}
       #cancel-in-progress: true
-      cancel-in-progress: false
+      #cancel-in-progress: false
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
