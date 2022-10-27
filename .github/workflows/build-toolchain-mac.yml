@@ -17,6 +17,7 @@ jobs:
     timeout-minutes: 600
 
     strategy:
+      fail-fast: false
       matrix:
         xcode: ['13.3.1']
         #xcode: ['13.3.1', '14.0.1']
@@ -202,15 +203,15 @@ jobs:
 
       - name: Setup Swift ${{ matrix.swift }}
         run: |
-          sed -I "" 's; swift: ".*",; swift: ${{ matrix.tag-swift }},;g' lib/Git/Revision.js
-          sed -I "" 's; dispatch: ".*",; dispatch: ${{ matrix.tag-dispatch }},;g' lib/Git/Revision.js
-          sed -I "" 's; foundation: ".*",; foundation: ${{ matrix.tag-foundation }},;g' lib/Git/Revision.js
-          sed -I "" 's; llvm: ".*",; llvm: ${{ matrix.tag-llvm }},;g' lib/Git/Revision.js
-          sed -I "" 's; cmark: ".*",; cmark: ${{ matrix.tag-cmark }},;g' lib/Git/Revision.js
-          sed -I "" 's; spm: ".*",; spm: ${{ matrix.tag-spm }},;g' lib/Git/Revision.js
-          sed -I "" 's; llb: ".*",; llb: ${{ matrix.tag-llb }},;g' lib/Git/Revision.js
-          sed -I "" 's; tsc: ".*",; tsc: ${{ matrix.tag-tsc }},;g' lib/Git/Revision.js
-          sed -I "" 's; sd: ".*",; sd: ${{ matrix.tag-sd }},;g' lib/Git/Revision.js
+          sed -I "" 's; swift: ".*",; swift: "${{ matrix.tag-swift }}",;g' lib/Git/Revision.js
+          sed -I "" 's; dispatch: ".*",; dispatch: "${{ matrix.tag-dispatch }}",;g' lib/Git/Revision.js
+          sed -I "" 's; foundation: ".*",; foundation: "${{ matrix.tag-foundation }}",;g' lib/Git/Revision.js
+          sed -I "" 's; llvm: ".*",; llvm: "${{ matrix.tag-llvm }}",;g' lib/Git/Revision.js
+          sed -I "" 's; cmark: ".*",; cmark: "${{ matrix.tag-cmark }}",;g' lib/Git/Revision.js
+          sed -I "" 's; spm: ".*",; spm: "${{ matrix.tag-spm }}",;g' lib/Git/Revision.js
+          sed -I "" 's; llb: ".*",; llb: "${{ matrix.tag-llb }}",;g' lib/Git/Revision.js
+          sed -I "" 's; tsc: ".*",; tsc: "${{ matrix.tag-tsc }}",;g' lib/Git/Revision.js
+          sed -I "" 's; sd: ".*",; sd: "${{ matrix.tag-sd }}",;g' lib/Git/Revision.js
 
       - name: Build
         run: |
