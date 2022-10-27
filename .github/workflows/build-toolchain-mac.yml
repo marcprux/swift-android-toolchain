@@ -33,7 +33,7 @@ jobs:
             #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
     runs-on: macOS-12
-    environment:
+    env:
       NDK_VERSION: ${{ matrix.ndkversion }}
 
     concurrency:
