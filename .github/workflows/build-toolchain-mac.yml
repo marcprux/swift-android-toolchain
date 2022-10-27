@@ -18,12 +18,14 @@ jobs:
 
     strategy:
       matrix:
-        xcode: ['13.3.1', '14.0.1']
-        #xcode: ['13.3.1']
+        xcode: ['13.3.1']
+        #xcode: ['13.3.1', '14.0.1']
 
-        swift: ['5.5.2', '5.5.3', '5.6.3', '5.7'] 
+        swift: ['5.5.2', '5.5.3'] 
+        #swift: ['5.5.2', '5.5.3', '5.6.3', '5.7'] 
 
-        ndk: ['r21e', 'r22b']
+        ndk: ['r21e']
+        #ndk: ['r21e', 'r22b']
         # need to extract from .dmg for more recent NDK versions
         #ndk: ['r21e', 'r22b', 'r25b']
 
@@ -49,7 +51,7 @@ jobs:
 
           - swift: '5.5.2'
             # https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
-            #tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
+            tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
             #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
             #tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
             #tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
@@ -69,7 +71,7 @@ jobs:
 
           - swift: '5.5.3'
             # https://github.com/apple/swift/releases/tag/swift-5.5.3-RELEASE
-            #tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
+            tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
             #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
             #tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
             #tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
