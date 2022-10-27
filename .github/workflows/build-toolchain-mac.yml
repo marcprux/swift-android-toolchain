@@ -2,7 +2,6 @@ name: Build toochain for Android
 
 on: [push, release, workflow_dispatch]
 
-
 jobs:
   build:
     name: Swift ${{ matrix.swift }} toolchain NDK ${{ matrix.ndk }}
@@ -35,7 +34,7 @@ jobs:
 
     runs-on: macOS-12
     concurrency:
-      #group: ${{ github.ref_name }}
+      group: ${{ github.head_ref || github.run_id }}
       cancel-in-progress: true
 
     steps:
