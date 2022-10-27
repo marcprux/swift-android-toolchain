@@ -21,6 +21,33 @@ jobs:
         xcode: ['13.3.1', '14.0.1']
         #xcode: ['13.3.1']
 
+        swift: ['5.5.2', '5.5.3', '5.6.3', '5.7'] 
+
+        ndk: ['r21e', 'r22b']
+        # need to extract from .dmg for more recent NDK versions
+        #ndk: ['r21e', 'r22b', 'r25b']
+
+        include:
+          - ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+          - ndk: 'r22b'
+            ndkversion: '22.1.7171670'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r22b-darwin-x86_64.zip'
+          #- ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r23c-darwin.dmg'
+          #- ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r24-darwin.dmg'
+          #- ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+ 
+          # get tags by updating with swift-android-build.sh
+          # grep ' [a-z]*: "' lib/Git/Revision.js
+
+
 
     runs-on: macOS-12
     env:
