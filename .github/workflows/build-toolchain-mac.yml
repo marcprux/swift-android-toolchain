@@ -4,7 +4,7 @@ on: [push, release, workflow_dispatch]
 
 jobs:
   build:
-    name: Swift ${{ matrix.swift }} toolchain NDK ${{ matrix.ndk }}
+    name: NDK ${{ matrix.ndk }} Swift ${{ matrix.swift }}
     timeout-minutes: 600
 
     strategy:
@@ -33,6 +33,9 @@ jobs:
             #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
     runs-on: macOS-12
+    environment:
+      NDK_VERSION: ${{ matrix.ndkversion }}
+
     concurrency:
       group: ${{ github.head_ref || github.run_id }}
       cancel-in-progress: true
@@ -62,6 +65,8 @@ jobs:
 
       - name: Setup NDK
         run: |
+          echo ${{ matrix.ndkversion }} > NDK_VERSION
+
           curl -O -fsSL ${{ matrix.ndkurl }}
           # TODO: handle .dmg (which is how recent NDK versions are packaged)
           unzip -qq $(basename ${{ matrix.ndkurl }}) -d ./${{ matrix.ndkversion }}
@@ -76,7 +81,7 @@ jobs:
       - name: Cache Toolchain
         uses: ./.github/actions/cache-always
         with:
-          key: swift-android-toolchain-cache
+          key: swift-android-toolchain-cache-swift-${{ matrix.swift }}-ndk-${{ matrix.ndk }}
           path: |
             ./ToolChain
 
