@@ -67,7 +67,6 @@ jobs:
             #tag-icu:        'e2d85306162d3a0691b070b4f0a73e4012433444'
             #tag-curl:       '566b74a0e19b9aa610f4931e5bfd339bcf8e9147'
             #tag-xml:        'f8a8c1f59db355b46962577e7b74f1a1e8149dc6'
-            #tag-cblas:      'b89fb708caa5a5a32de8f4306c4ff132e0228e9'
 
           - swift: '5.5.3'
             # https://github.com/apple/swift/releases/tag/swift-5.5.3-RELEASE
@@ -87,12 +86,10 @@ jobs:
             #tag-icu:        'e2d85306162d3a0691b070b4f0a73e4012433444'
             #tag-curl:       '566b74a0e19b9aa610f4931e5bfd339bcf8e9147'
             #tag-xml:        'f8a8c1f59db355b46962577e7b74f1a1e8149dc6'
-            #tag-cblas:      'b89fb708caa5a5a32de8f4306c4ff132e0228e9a'
 
           - swift: '5.6.3'
             # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
-            #tag-cblas:      'b89fb708caa5a5a32de8f4306c4ff132e0228e9a'
-            #tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
+            tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
             #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
             #tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
             #tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
@@ -108,11 +105,10 @@ jobs:
             #tag-icu:        'e2d85306162d3a0691b070b4f0a73e4012433444'
             #tag-curl:       '566b74a0e19b9aa610f4931e5bfd339bcf8e9147'
             #tag-xml:        'f8a8c1f59db355b46962577e7b74f1a1e8149dc6'
-            #tag-cblas:      'b89fb708caa5a5a32de8f4306c4ff132e0228e9a'
 
           - swift: '5.7'
             # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
-            #tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
+            tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
             #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
             #tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
             #tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
@@ -128,7 +124,6 @@ jobs:
             #tag-icu:        'e2d85306162d3a0691b070b4f0a73e4012433444'
             #tag-curl:       '566b74a0e19b9aa610f4931e5bfd339bcf8e9147'
             #tag-xml:        'f8a8c1f59db355b46962577e7b74f1a1e8149dc6'
-            #tag-cblas:      'b89fb708caa5a5a32de8f4306c4ff132e0228e9a'
 
 
     runs-on: macOS-12
