@@ -2,9 +2,6 @@ name: Build toochain for Android
 
 on: [push, release, workflow_dispatch]
 
-concurrency:
-  group: ${{ github.ref_name }}
-  cancel-in-progress: true
 
 jobs:
   build:
@@ -26,17 +23,20 @@ jobs:
           - ndk: 'r22b'
             ndkversion: '22.1.7171670'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r22b-darwin-x86_64.zip'
-          - ndk: 'r23c'
-            ndkversion: '23.2.8568313'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r23c-darwin.dmg'
-          - ndk: 'r24'
-            ndkversion: '24.0.8215888'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r24-darwin.dmg'
-          - ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+          #- ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r23c-darwin.dmg'
+          #- ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r24-darwin.dmg'
+          #- ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
     runs-on: macOS-12
+    concurrency:
+      #group: ${{ github.ref_name }}
+      cancel-in-progress: true
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
