@@ -13,8 +13,8 @@ on:
 
 jobs:
   build:
-    name: Android NDK ${{ matrix.ndk }} Swift ${{ matrix.swift }}
-    timeout-minutes: 600
+    name: Android Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }}
+    timeout-minutes: 600 # max is 360
 
     strategy:
       fail-fast: false
