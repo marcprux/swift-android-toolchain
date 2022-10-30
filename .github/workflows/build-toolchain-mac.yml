@@ -33,9 +33,9 @@ jobs:
 
 
         include:
-          - ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+          #- ndk: 'r21e'
+            #ndkversion: '21.4.7075529'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
 
           #- ndk: 'r22b'
             #ndkversion: '22.1.7171670'
@@ -54,6 +54,9 @@ jobs:
           # grep ' [a-z]*: "' lib/Git/Revision.js
 
           - swift: '5.5.2'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
             # https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
             tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
             tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
@@ -72,6 +75,9 @@ jobs:
             # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
 
           - swift: '5.7'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
             # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
             tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
             tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
@@ -97,7 +103,7 @@ jobs:
         with:
           xcode-version: ${{ matrix.xcode }}
 
-      - uses: actions/checkout@master
+      - uses: actions/checkout@dev
 
       - uses: nttld/setup-ndk@v1
         with:
