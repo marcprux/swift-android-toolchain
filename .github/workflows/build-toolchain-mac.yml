@@ -103,7 +103,7 @@ jobs:
         with:
           xcode-version: ${{ matrix.xcode }}
 
-      - uses: actions/checkout@dev
+      - uses: actions/checkout@HEAD
 
       - uses: nttld/setup-ndk@v1
         with:
