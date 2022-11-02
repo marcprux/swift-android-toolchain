@@ -9,12 +9,12 @@ on:
     branches:
       - '*'
   schedule:
-    - cron: '30 6 * * *'
+    - cron: '0 5,12,19 * * *'
 
 jobs:
   build:
     name: Android Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }}
-    timeout-minutes: 600 # max is 360
+    timeout-minutes: 600 # max is 360, but is not long enough
 
     strategy:
       fail-fast: false
