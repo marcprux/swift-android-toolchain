@@ -22,9 +22,10 @@ jobs:
         xcode: ['13.3.1']
         #xcode: ['13.3.1', '14.0.1']
 
+        swift: ['5.5.2']
         #swift: ['5.5.2', '5.5.3'] 
         #swift: ['5.5.2', '5.5.3', '5.6', '5.6.3', '5.7']
-        swift: ['5.6']
+        #swift: ['5.6']
         #swift: ['5.7']
 
         ndk: ['r21e']
@@ -33,6 +34,23 @@ jobs:
         #ndk: ['r21e', 'r22b', 'r25b']
 
         include:
+          - swift: '5.5.2'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            # https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
+            tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
+            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
+            tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
+            tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        '7a1f113534689c77b3a4110288478580b7b8d91c'
+            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
+            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
+            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+
+
+        unused:
           #- ndk: 'r21e'
             #ndkversion: '21.4.7075529'
             #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -52,21 +70,6 @@ jobs:
  
           # get tags by updating with swift-android-build.sh
           # grep ' [a-z]*: "' lib/Git/Revision.js
-
-          #- swift: '5.5.2'
-            #ndk: 'r21e'
-            #ndkversion: '21.4.7075529'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-            ## https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
-            #tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
-            #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
-            #tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
-            #tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
-            #tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            #tag-spm:        '7a1f113534689c77b3a4110288478580b7b8d91c'
-            #tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
-            #tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
-            #tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
 
           #- swift: '5.5.3'
             # https://github.com/apple/swift/releases/tag/swift-5.5.3-RELEASE
@@ -89,20 +92,20 @@ jobs:
           #- swift: '5.6.3'
             # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
 
-          #- swift: '5.7'
-            #ndk: 'r21e'
-            #ndkversion: '21.4.7075529'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-            ## https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
-            #tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
-            #tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
-            #tag-foundation: 'a87d185cecfc50086a592852bae223d5ec214cea'
-            #tag-llvm:       '3dade082a9b1989207a7fa7f3975868485d16a49'
-            #tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            #tag-spm:        '7b898e6cad75a3c096ad947508eb948ad5f614d4'
-            #tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
-            #tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
-            #tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
+          - swift: '5.7'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
+            tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
+            tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
+            tag-foundation: 'a87d185cecfc50086a592852bae223d5ec214cea'
+            tag-llvm:       '3dade082a9b1989207a7fa7f3975868485d16a49'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        '7b898e6cad75a3c096ad947508eb948ad5f614d4'
+            tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
+            tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
+            tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
 
     runs-on: macOS-12
     env:
