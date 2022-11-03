@@ -22,7 +22,7 @@ jobs:
         xcode: ['13.3.1']
         #xcode: ['13.3.1', '14.0.1']
 
-        swift: ['5.5.2']
+        #swift: ['5.5.2']
         #swift: ['5.5.2', '5.5.3'] 
         #swift: ['5.5.2', '5.5.3', '5.6', '5.6.3', '5.7']
         #swift: ['5.6']
@@ -50,6 +50,7 @@ jobs:
             tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
 
 
+        # blocks that can be moved up to include if need be
         unused:
           #- ndk: 'r21e'
             #ndkversion: '21.4.7075529'
