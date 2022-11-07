@@ -15,7 +15,7 @@ jobs:
   build:
     name: Android Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }}
     # 5 hours (max is 360, which isn't sufficient)
-    timeout-minutes: 300 
+    timeout-minutes: 720 
 
     strategy:
       fail-fast: false
