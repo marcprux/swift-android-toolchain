@@ -54,6 +54,7 @@ const SAPBuilder = require("./lib/Builders/SAPBuilder");
 const YAMSBuilder = require("./lib/Builders/YAMSBuilder");
 const SwiftDriverBuilder = require("./lib/Builders/SwiftDriverBuilder");
 const SwiftCryptoBuilder = require("./lib/Builders/SwiftCryptoBuilder");
+const SwiftSystemBuilder = require("./lib/Builders/SwiftSystemBuilder");
 const CBLASBuilder = require("./lib/Builders/CBLASBuilder");
 
 module.exports = class Automation extends Tool {
@@ -144,6 +145,8 @@ module.exports = class Automation extends Tool {
       new SwiftDriverBuilder().runAction(action);
     } else if (component == "sc") {
       new SwiftCryptoBuilder().runAction(action);
+    } else if (component == "ss") {
+      new SwiftSystemBuilder().runAction(action);
     } else if (component == "stage2") {
       this.stage2(action);
     } else if (component == "stage3") {
@@ -175,6 +178,7 @@ module.exports = class Automation extends Tool {
   stage2(action) {
     this.runComponentAction("cmark", action);
     this.runComponentAction("yams", action);
+    this.runComponentAction("ss", action);
     this.runComponentAction("sap", action);
     this.runComponentAction("tsc", action);
     this.runComponentAction("llb", action);
@@ -207,6 +211,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("llb", "clean");
     this.runComponentAction("spm", "clean");
     this.runComponentAction("sd", "clean");
+    this.runComponentAction("ss", "clean");
     this.runComponentAction("sap", "clean");
     this.runComponentAction("yams", "clean");
     this.runComponentAction("cblas", "clean");
@@ -227,6 +232,7 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.foundation));
     paths.push(Paths.sourcesDirPath(Components.tsc));
     paths.push(Paths.sourcesDirPath(Components.llb));
+    paths.push(Paths.sourcesDirPath(Components.ss));
     paths.push(Paths.sourcesDirPath(Components.spm));
     paths.push(Paths.sourcesDirPath(Components.sap));
     paths.push(Paths.sourcesDirPath(Components.sc));
