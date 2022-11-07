@@ -2,14 +2,14 @@ name: Swift Android Build Matrix
 
 on:
   workflow_dispatch:
-    #push:
+  #push:
     #branches:
+      #- '*'
+  #pull_request_target:
+  #branches:
     #- '*'
-    #pull_request_target:
-    #branches:
-    #- '*'
-  schedule:
-    - cron: '0 5,12,19 * * *'
+  #schedule:
+    #- cron: '0 5,12,19 * * *'
 
 jobs:
   build:
