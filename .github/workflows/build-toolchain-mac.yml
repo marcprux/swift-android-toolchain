@@ -1,4 +1,4 @@
-name: Swift Android Build Matrix
+name: Build Toolchains
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ on:
 
 jobs:
   build:
-    name: Android Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }}
+    name: Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }}
     # 5 hours (max is 360, which isn't sufficient)
     timeout-minutes: 720 
 
@@ -179,6 +179,10 @@ jobs:
           echo $(ls /Users/runner/Library/Android/sdk/ndk/${{ matrix.ndkversion }})
 
       - name: Cache Toolchain
+        # we don't cache because they are over 5gb (~5.3gb),
+        # and GH actions only offers 10gb per-repo cache persistence,
+        # so they are constantly thrashing and never used
+        if: false
         uses: ./.github/actions/cache-always
         with:
           key: swift-android-toolchain-cache-swift-${{ matrix.swift }}-ndk-${{ matrix.ndk }}
@@ -225,7 +229,9 @@ jobs:
           #path: ./ToolChain/swift-android-toolchain.tar.gz
           path: ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
-      # Create a new release for this tag
+      # Create or update a release for this tag
+      # Releases consist of all the toolchains (NDK variants)
+      # built for a single Swift version
       - name: "Create Release"
         #if: startsWith(github.ref, 'refs/tags/')
         env:
