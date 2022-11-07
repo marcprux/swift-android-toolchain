@@ -211,23 +211,23 @@ jobs:
         # e.g.: Swift version 5.5.2 (swift-5.5.2-RELEASE) Target: x86_64-apple-darwin21.6.0
         run: |
           ./ToolChain/swift-android-toolchain/usr/bin/swift --version
-          mv ./ToolChain/swift-android-toolchain.tar.gz ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
+          mv ./ToolChain/swift-android-toolchain.tar.gz ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
       - name: Upload Archive
         uses: actions/upload-artifact@v3
         with:
           #name: Toolchain build archive
           #path: ./ToolChain/swift-android-toolchain.tar.gz
-          path: ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
+          path: ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
       # Create a new release for this tag
       - name: "Create Release"
-        if: startsWith(github.ref, 'refs/tags/')
+        #if: startsWith(github.ref, 'refs/tags/')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Creating release: ${GITHUB_REF#refs/tags/}"
-          # create a pre-release if it doesn't already exist 
-          gh release create "${GITHUB_REF#refs/tags/}" --prerelease --title "Release ${GITHUB_REF#refs/tags/}" --generate-notes || true
-          gh release upload "${GITHUB_REF#refs/tags/}" -- ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
+          RELNAME="swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}"
+          gh release create "${RELNAME}" --title "Swift ${{ matrix.swift }} Android Toolchains" || true
+          gh release upload "${RELNAME}" --clobber -- ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
