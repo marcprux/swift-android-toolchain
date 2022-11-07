@@ -25,7 +25,6 @@ jobs:
 
         #swift: ['5.5.2']
         #swift: ['5.5.2', '5.5.3'] 
-        #swift: ['5.5.2', '5.5.3', '5.6', '5.6.3', '5.7']
         #swift: ['5.6']
         #swift: ['5.7']
 
@@ -34,6 +33,8 @@ jobs:
         # need to extract from .dmg for more recent NDK versions
         #ndk: ['r21e', 'r22b', 'r25b']
        
+        swift: ['5.5.2', '5.5.3', '5.6', '5.6.3', '5.7', '5.7.1']
+
         # exclude the builds with a successful release
         exclude:
           - swift: '5.5.2'
