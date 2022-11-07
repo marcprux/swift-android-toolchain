@@ -68,6 +68,7 @@ jobs:
             tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
 
           - swift: '5.6'
+            xcode: '13.3.1'
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -83,6 +84,7 @@ jobs:
             tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
 
           - swift: '5.6.3'
+            xcode: '13.3.1'
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -98,6 +100,7 @@ jobs:
             tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
 
           - swift: '5.7'
+            xcode: '13.3.1'
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -113,6 +116,7 @@ jobs:
             tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
 
           - swift: '5.7.1'
+            xcode: '13.3.1'
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -130,6 +134,7 @@ jobs:
     runs-on: macOS-12
     env:
       NDK_VERSION: ${{ matrix.ndkversion }}
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
 
       #concurrency:
       #group: ${{ matrix.ndk }}-${{ matrix.swift }}-${{ matrix.xcode }}-${{ github.head_ref || github.run_id }}
