@@ -144,7 +144,7 @@ jobs:
             tag-spm:        'e7b2c1a261ee74cc1214ee4e97a7706e7c05f7d1'
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        'afc0938503bac012f76ceb619d031f63edc4c5f7'
-            tag-sd:         'f504716c27d2e5d4144fa4794b12129301d17729'
+            tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
@@ -180,6 +180,9 @@ jobs:
           echo "Installed NDKs:" 
           # android-platform-tools contains: 23.2.8568313 24.0.8215888 25.1.8937393
           ls -1 ~/Library/Android/sdk/ndk/
+
+          ls -la ~/Library/Android/sdk/ndk/*/toolchains/llvm/prebuilt/darwin-x86_64/
+          ls -la ~/Library/Android/sdk/ndk/*/toolchains/llvm/prebuilt/darwin-x86_64/bin/
 
           sudo mkdir -p /usr/local/ndk
           sudo ln -vsif ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} /usr/local/ndk/${{ matrix.ndkversion }} 
