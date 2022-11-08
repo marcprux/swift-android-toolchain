@@ -82,9 +82,15 @@ jobs:
           - swift: '5.6'
             #xcode: '13.3.1'
             xcode: '14.1'
+
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+
             # https://github.com/apple/swift/releases/tag/swift-5.6-RELEASE
             tag-swift:      '8c610f7f19b9c4e0651f95fa7c4852e5d3b7a03e'
             tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
@@ -95,13 +101,21 @@ jobs:
             tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
             tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
             tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
+            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.6.3'
             #xcode: '13.3.1'
             xcode: '14.1'
+
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+
             # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
             tag-swift:      '2078f75754841cf7fd8b05983f29eeb010caf2ca'
             tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
@@ -112,14 +126,21 @@ jobs:
             tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
             tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
             tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
+            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7'
             #xcode: '13.3.1'
             xcode: '14.1'
-            # TODO: probably need ndk25+ for swift 5.7
+
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+
             # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
             tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
             tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
@@ -130,13 +151,21 @@ jobs:
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
             tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
+            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7.1'
             #xcode: '13.3.1'
             xcode: '14.1'
+
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+
             # https://github.com/apple/swift/releases/tag/swift-5.7.1-RELEASE
             tag-swift:      'fc307ff159fe330f77f9be20fc29d03e11b14c6e'
             tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
@@ -147,6 +176,9 @@ jobs:
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        'afc0938503bac012f76ceb619d031f63edc4c5f7'
             tag-sd:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-sd:         'f504716c27d2e5d4144fa4794b12129301d17729'
+            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
     runs-on: macOS-12
     env:
@@ -178,13 +210,18 @@ jobs:
         run: |
           echo ${{ matrix.ndkversion }} > NDK_VERSION
 
-          curl -O -fsSL ${{ matrix.ndkurl }}
-          # TODO: handle .dmg (which is how recent NDK versions are packaged)
-          # e.g.: 
-          # hdiutil attach -plist -nobrowse -readonly -mountrandom /tmp/droid android-ndk-r25b-darwin.dmg
-          # cp -a /tmp/droid/dmg.IfDPvM/AndroidNDK8937393.app/Contents/NDK ./${{ matrix.ndkversion }}
+          curl -O -fsSL "${{ matrix.ndkurl }}"
 
-          unzip -qq $(basename ${{ matrix.ndkurl }}) -d ./${{ matrix.ndkversion }}
+          # recent NDKs are packed in a dmg which we need to mount and extract
+          if [[ "${{ matrix.ndkurl }}" = *.dmg ]] ; then
+            hdiutil attach -plist -nobrowse -readonly -mountpoint /tmp/droid "$(basename ${{ matrix.ndkurl }})"
+            cp -a /tmp/droid/AndroidNDK*.app/Contents/NDK ./${{ matrix.ndkversion }}
+            umount /tmp/droid
+          else
+            unzip -qq $(basename ${{ matrix.ndkurl }}) -d ./${{ matrix.ndkversion }}
+          fi
+
+          du -skh ./${{ matrix.ndkversion }}
 
           sudo mkdir -p /usr/local/ndk
           ls -la /usr/local/ndk/
@@ -229,6 +266,8 @@ jobs:
           sed -I "" 's/ llb: *".*",/ llb: "${{ matrix.tag-llb }}",/g' lib/Git/Revision.js
           sed -I "" 's/ tsc: *".*",/ tsc: "${{ matrix.tag-tsc }}",/g' lib/Git/Revision.js
           sed -I "" 's/ sd: *".*",/ sd: "${{ matrix.tag-sd }}",/g' lib/Git/Revision.js
+          sed -I "" 's/ ss: *".*",/ ss: "${{ matrix.tag-ss }}",/g' lib/Git/Revision.js
+          sed -I "" 's/ scoll: *".*",/ sc: "${{ matrix.tag-scoll }}",/g' lib/Git/Revision.js
 
           git diff
 
