@@ -12,12 +12,12 @@ on:
     #- cron: '0 5,12,19 * * *'
 
 
-# NDKS: 
-# 25.1.8937393: https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg
-# 24.0.8215888: https://dl.google.com/android/repository/android-ndk-r24-darwin.dmg
-# 23.2.8568313: https://dl.google.com/android/repository/android-ndk-r23c-darwin.dmg
-# 22.1.7171670: https://dl.google.com/android/repository/android-ndk-r22b-darwin-x86_64.zip
-# 21.4.7075529: https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip
+# NDKS: VERSION(*=LTS) (Android API): download URL
+# 25.1.8937393* (13): https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg
+# 24.0.8215888 (12L): https://dl.google.com/android/repository/android-ndk-r24-darwin.dmg
+# 23.2.8568313 (12): https://dl.google.com/android/repository/android-ndk-r23c-darwin.dmg
+# 22.1.7171670 (11): https://dl.google.com/android/repository/android-ndk-r22b-darwin-x86_64.zip
+# 21.4.7075529* (11): https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip
 # 20.1.5948944: https://dl.google.com/android/repository/android-ndk-r20b-darwin-x86_64.zip
 # 19.2.5345600: https://dl.google.com/android/repository/android-ndk-r19c-darwin-x86_64.zip
 
@@ -30,22 +30,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #xcode: ['13.3.1']
-        #xcode: ['13.3.1', '14.0.1']
-
-        #swift: ['5.5.2']
-        #swift: ['5.5.2', '5.5.3'] 
-        #swift: ['5.6']
-        #swift: ['5.7']
-
-        #ndk: ['r21e']
-        #ndk: ['r21e', 'r22b']
-        # need to extract from .dmg for more recent NDK versions
-        #ndk: ['r21e', 'r22b', 'r25b']
-       
-        # swift: ['5.5.2', '5.5.3', '5.6', '5.6.3', '5.7', '5.7.1']
-        # swift: ['5.5.3', '5.6.3', '5.7.1']
-
         include:
           #- swift: '5.5.2'
             #xcode: '13.3.1'
@@ -63,58 +47,49 @@ jobs:
             #tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
             #tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
 
-          #- swift: '5.5.3'
-            #xcode: '13.3.1'
-            #ndk: 'r21e'
-            #ndkversion: '21.4.7075529'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-            ## https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
-            #tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
-            #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
-            #tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
-            #tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
-            #tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            #tag-spm:        'a29154a4137747bdbfe83ca26db4b24f8c4fcd31'
-            #tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
-            #tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
-            #tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
-
-          - swift: '5.6'
-            #xcode: '13.3.1'
+          - swift: '5.5.3'
             xcode: '14.1'
 
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+
+            tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
+            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
+            tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
+            tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        'a29154a4137747bdbfe83ca26db4b24f8c4fcd31'
+            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
+            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
+            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+
+          #- swift: '5.6'
+            #xcode: '14.1'
 
             #ndk: 'r25b'
             #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
-            # https://github.com/apple/swift/releases/tag/swift-5.6-RELEASE
-            tag-swift:      '8c610f7f19b9c4e0651f95fa7c4852e5d3b7a03e'
-            tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
-            tag-foundation: '061007026b6a12039bede2c6419753c8630741d4'
-            tag-llvm:       '900c3b6b832d1d0e7d6e1220f6ba001802cbe0cc'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        '6647fa09d6042b29cbb115eecf6f292beb7f6837'
-            tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
-            tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
-            tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
-            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
+            ## https://github.com/apple/swift/releases/tag/swift-5.6-RELEASE
+            #tag-swift:      '8c610f7f19b9c4e0651f95fa7c4852e5d3b7a03e'
+            #tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
+            #tag-foundation: '061007026b6a12039bede2c6419753c8630741d4'
+            #tag-llvm:       '900c3b6b832d1d0e7d6e1220f6ba001802cbe0cc'
+            #tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            #tag-spm:        '6647fa09d6042b29cbb115eecf6f292beb7f6837'
+            #tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
+            #tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
+            #tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
+            #tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            #tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.6.3'
-            #xcode: '13.3.1'
             xcode: '14.1'
 
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
             # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
             tag-swift:      '2078f75754841cf7fd8b05983f29eeb010caf2ca'
@@ -130,16 +105,11 @@ jobs:
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7'
-            #xcode: '13.3.1'
             xcode: '14.1'
 
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
             # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
             tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
@@ -155,16 +125,11 @@ jobs:
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7.1'
-            #xcode: '13.3.1'
             xcode: '14.1'
 
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
             # https://github.com/apple/swift/releases/tag/swift-5.7.1-RELEASE
             tag-swift:      'fc307ff159fe330f77f9be20fc29d03e11b14c6e'
