@@ -178,8 +178,8 @@ module.exports = class Automation extends Tool {
   stage2(action) {
     this.runComponentAction("cmark", action);
     this.runComponentAction("yams", action);
-    this.runComponentAction("ss", action);
     this.runComponentAction("sap", action);
+    this.runComponentAction("ss", action);
     this.runComponentAction("tsc", action);
     this.runComponentAction("llb", action);
     this.runComponentAction("sd", action);
@@ -230,9 +230,9 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.swift));
     paths.push(Paths.sourcesDirPath(Components.dispatch));
     paths.push(Paths.sourcesDirPath(Components.foundation));
+    paths.push(Paths.sourcesDirPath(Components.ss));
     paths.push(Paths.sourcesDirPath(Components.tsc));
     paths.push(Paths.sourcesDirPath(Components.llb));
-    paths.push(Paths.sourcesDirPath(Components.ss));
     paths.push(Paths.sourcesDirPath(Components.spm));
     paths.push(Paths.sourcesDirPath(Components.sap));
     paths.push(Paths.sourcesDirPath(Components.sc));
