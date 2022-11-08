@@ -175,7 +175,7 @@ jobs:
             tag-spm:        'e7b2c1a261ee74cc1214ee4e97a7706e7c05f7d1'
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        'afc0938503bac012f76ceb619d031f63edc4c5f7'
-            tag-sd:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-sd:         'f504716c27d2e5d4144fa4794b12129301d17729'
             tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
