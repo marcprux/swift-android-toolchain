@@ -169,7 +169,7 @@ module.exports = class Automation extends Tool {
 
   /** @private */
   stage1(action) {
-    this.runComponentAction("cblas", action);
+    //this.runComponentAction("cblas", action);
     this.runComponentAction("llvm", action);
     this.runComponentAction("icu", action);
     this.runComponentAction("xml", action);
@@ -217,7 +217,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("ss", "clean");
     this.runComponentAction("sap", "clean");
     this.runComponentAction("yams", "clean");
-    this.runComponentAction("cblas", "clean");
+    //this.runComponentAction("cblas", "clean");
   }
 
   /** @private */
@@ -242,7 +242,7 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.sc));
     paths.push(Paths.sourcesDirPath(Components.sd));
     paths.push(Paths.sourcesDirPath(Components.yams));
-    paths.push(Paths.sourcesDirPath(Components.cblas));
+    //paths.push(Paths.sourcesDirPath(Components.cblas));
     return paths;
   }
 
