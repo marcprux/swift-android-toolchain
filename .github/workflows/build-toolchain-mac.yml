@@ -48,32 +48,6 @@ jobs:
         # swift: ['5.5.3', '5.6.3', '5.7.1']
 
         include:
-
-          - swift: '5.7'
-            #xcode: '13.3.1'
-            xcode: '14.1'
-
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg"
-
-            # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
-            tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
-            tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
-            tag-foundation: 'a87d185cecfc50086a592852bae223d5ec214cea'
-            tag-llvm:       '3dade082a9b1989207a7fa7f3975868485d16a49'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        '7b898e6cad75a3c096ad947508eb948ad5f614d4'
-            tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
-            tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
-            tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
-            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
           - swift: '5.7.1'
             #xcode: '13.3.1'
             xcode: '14.1'
