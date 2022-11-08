@@ -173,10 +173,14 @@ jobs:
       - name: Setup NDK
         run: |
           echo ${{ matrix.ndkversion }} > NDK_VERSION
-          ln -s ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} .
+          echo "Installed NDKs:" 
+          # usually: 23.2.8568313 24.0.8215888 25.1.8937393
+          ls -1 ~/Library/Android/sdk/ndk/
+
+          sudo mkdir -p /usr/local/ndk
           sudo ln -vsif ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} /usr/local/ndk/${{ matrix.ndkversion }} 
 
-          ls -la /Users/runner/Library/Android/sdk/ndk/${{ matrix.ndkversion }}
+          ls -la /usr/local/ndk/${{ matrix.ndkversion }}
 
           #curl -O -fsSL "${{ matrix.ndkurl }}"
           # recent NDKs are packed in a dmg which we need to mount and extract
@@ -190,7 +194,6 @@ jobs:
 
           #du -skh ./${{ matrix.ndkversion }}
 
-          #sudo mkdir -p /usr/local/ndk
           #ls -la /usr/local/ndk/
 
           #sudo ln -vsif ${GITHUB_WORKSPACE}/${{ matrix.ndkversion }}/android-ndk-${{ matrix.ndk }} /usr/local/ndk/${{ matrix.ndkversion }} 
