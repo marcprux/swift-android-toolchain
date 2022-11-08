@@ -55,6 +55,7 @@ const YAMSBuilder = require("./lib/Builders/YAMSBuilder");
 const SwiftDriverBuilder = require("./lib/Builders/SwiftDriverBuilder");
 const SwiftCryptoBuilder = require("./lib/Builders/SwiftCryptoBuilder");
 const SwiftSystemBuilder = require("./lib/Builders/SwiftSystemBuilder");
+const SwiftCollectionsBuilder = require("./lib/Builders/SwiftCollectionsBuilder");
 const CBLASBuilder = require("./lib/Builders/CBLASBuilder");
 
 module.exports = class Automation extends Tool {
@@ -147,6 +148,8 @@ module.exports = class Automation extends Tool {
       new SwiftCryptoBuilder().runAction(action);
     } else if (component == "ss") {
       new SwiftSystemBuilder().runAction(action);
+    } else if (component == "scoll") {
+      new SwiftCollectionsBuilder().runAction(action);
     } else if (component == "stage2") {
       this.stage2(action);
     } else if (component == "stage3") {
