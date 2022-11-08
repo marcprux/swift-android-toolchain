@@ -46,6 +46,8 @@ jobs:
             #tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
             #tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
             #tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+            #tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            #tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.5.3'
             xcode: '14.1'
@@ -63,6 +65,8 @@ jobs:
             tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
             tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
             tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           #- swift: '5.6'
             #xcode: '14.1'
@@ -81,7 +85,7 @@ jobs:
             #tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
             #tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
             #tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
-            #tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            #tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             #tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.6.3'
@@ -101,7 +105,7 @@ jobs:
             tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
             tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
             tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
-            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7'
@@ -121,7 +125,7 @@ jobs:
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
             tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
-            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7.1'
@@ -141,7 +145,7 @@ jobs:
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        'afc0938503bac012f76ceb619d031f63edc4c5f7'
             tag-sd:         'f504716c27d2e5d4144fa4794b12129301d17729'
-            tag-ss:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
     runs-on: macOS-12
@@ -174,7 +178,7 @@ jobs:
         run: |
           echo ${{ matrix.ndkversion }} > NDK_VERSION
           echo "Installed NDKs:" 
-          # usually: 23.2.8568313 24.0.8215888 25.1.8937393
+          # android-platform-tools contains: 23.2.8568313 24.0.8215888 25.1.8937393
           ls -1 ~/Library/Android/sdk/ndk/
 
           sudo mkdir -p /usr/local/ndk
