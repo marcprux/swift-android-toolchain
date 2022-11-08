@@ -136,6 +136,8 @@ module.exports = class Automation extends Tool {
       new SwiftTSCBuilder().runAction(action);
     } else if (component == "llb") {
       new LLBBuilder().runAction(action);
+    } else if (component == "scoll") {
+      new SwiftCollectionsBuilder().runAction(action);
     } else if (component == "spm") {
       new SPMBuilder().runAction(action);
     } else if (component == "sap") {
@@ -148,8 +150,6 @@ module.exports = class Automation extends Tool {
       new SwiftCryptoBuilder().runAction(action);
     } else if (component == "ss") {
       new SwiftSystemBuilder().runAction(action);
-    } else if (component == "scoll") {
-      new SwiftCollectionsBuilder().runAction(action);
     } else if (component == "stage2") {
       this.stage2(action);
     } else if (component == "stage3") {
@@ -187,6 +187,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("llb", action);
     this.runComponentAction("sd", action);
     this.runComponentAction("sc", action);
+    this.runComponentAction("scoll", action);
     this.runComponentAction("spm", action);
   }
 
@@ -213,6 +214,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("tsc", "clean");
     this.runComponentAction("llb", "clean");
     this.runComponentAction("spm", "clean");
+    this.runComponentAction("scoll", "clean");
     this.runComponentAction("sd", "clean");
     this.runComponentAction("ss", "clean");
     this.runComponentAction("sap", "clean");
