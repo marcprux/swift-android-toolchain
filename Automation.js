@@ -169,7 +169,7 @@ module.exports = class Automation extends Tool {
 
   /** @private */
   stage1(action) {
-    //this.runComponentAction("cblas", action);
+    //this.runComponentAction("cblas", action); // disabled due to needing x86_64-linux-android-ar, which isn't available as part of more recent NDK releases (r21e but not r24+)
     this.runComponentAction("llvm", action);
     this.runComponentAction("icu", action);
     this.runComponentAction("xml", action);
