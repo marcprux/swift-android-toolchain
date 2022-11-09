@@ -30,6 +30,7 @@ jobs:
     strategy:
       fail-fast: false
       max-parallel: 10
+
       matrix:
         include:
           - swift: '5.5.2'
@@ -132,100 +133,6 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-
-
-        # env just hides the jobs we don't want to run
-        env:
-          - swift: '5.5.3'
-            xcode: '14.1'
-
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-
-            tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
-            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
-            tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
-            tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        'a29154a4137747bdbfe83ca26db4b24f8c4fcd31'
-            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
-            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
-            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
-            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
-          - swift: '5.6'
-            xcode: '14.1'
-
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-
-            # https://github.com/apple/swift/releases/tag/swift-5.6-RELEASE
-            tag-swift:      '8c610f7f19b9c4e0651f95fa7c4852e5d3b7a03e'
-            tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
-            tag-foundation: '061007026b6a12039bede2c6419753c8630741d4'
-            tag-llvm:       '900c3b6b832d1d0e7d6e1220f6ba001802cbe0cc'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        '6647fa09d6042b29cbb115eecf6f292beb7f6837'
-            tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
-            tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
-            tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
-            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
-          - swift: '5.6.3'
-            xcode: '14.1'
-
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-
-            # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
-            tag-swift:      '2078f75754841cf7fd8b05983f29eeb010caf2ca'
-            tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
-            tag-foundation: 'f5f7a82aaca9291944a07835cebfbe9036048664'
-            tag-llvm:       '72dbaa0dbac49e46e56e0a17c090def81f57f453'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        '55c1dc785b151cb51a54314ebc30a96d5cbaddf2'
-            tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
-            tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
-            tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
-            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
-          - swift: '5.7'
-            xcode: '14.1'
-
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-
-            # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
-            tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
-            tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
-            tag-foundation: 'a87d185cecfc50086a592852bae223d5ec214cea'
-            tag-llvm:       '3dade082a9b1989207a7fa7f3975868485d16a49'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        '7b898e6cad75a3c096ad947508eb948ad5f614d4'
-            tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
-            tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
-            tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
-            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
     runs-on: macOS-12
     env:
