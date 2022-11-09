@@ -330,7 +330,7 @@ jobs:
           sed -I "" 's/ llb: *".*",/ llb: "${{ matrix.tag-llb }}",/g' lib/Git/Revision.js
           sed -I "" 's/ tsc: *".*",/ tsc: "${{ matrix.tag-tsc }}",/g' lib/Git/Revision.js
           sed -I "" 's/ sd: *".*",/ sd: "${{ matrix.tag-sd }}",/g' lib/Git/Revision.js
-          sed -I "" 's/ ssys: *".*",/ ss: "${{ matrix.tag-ssys }}",/g' lib/Git/Revision.js
+          sed -I "" 's/ ssys: *".*",/ ssys: "${{ matrix.tag-ssys }}",/g' lib/Git/Revision.js
           sed -I "" 's/ scoll: *".*",/ sc: "${{ matrix.tag-scoll }}",/g' lib/Git/Revision.js
 
           git diff
