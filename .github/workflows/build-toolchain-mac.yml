@@ -31,11 +31,9 @@ jobs:
       fail-fast: false
       matrix:
         enabled: [true]
-        exclude:
-          - enabled: false
 
         include:
-          - enabled: false
+          - enabled: true
             swift: '5.5.2'
             xcode: '13.3.1'
             ndk: 'r21e'
@@ -62,6 +60,7 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
+        exclude:
           - enabled: false
             swift: '5.5.3'
             xcode: '14.1'
@@ -216,8 +215,6 @@ jobs:
       #group: ${{ matrix.ndk }}-${{ matrix.swift }}-${{ matrix.xcode }}-${{ github.head_ref || github.run_id }}
       #cancel-in-progress: true
       #cancel-in-progress: false
-
-    if: ${{ matrix.enabled }}
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
