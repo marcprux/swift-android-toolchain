@@ -235,8 +235,6 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.swift));
     paths.push(Paths.sourcesDirPath(Components.dispatch));
     paths.push(Paths.sourcesDirPath(Components.foundation));
-    paths.push(Paths.sourcesDirPath(Components.ss));
-    paths.push(Paths.sourcesDirPath(Components.scoll));
     paths.push(Paths.sourcesDirPath(Components.tsc));
     paths.push(Paths.sourcesDirPath(Components.llb));
     paths.push(Paths.sourcesDirPath(Components.spm));
@@ -244,7 +242,9 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.sc));
     paths.push(Paths.sourcesDirPath(Components.sd));
     paths.push(Paths.sourcesDirPath(Components.yams));
-    //paths.push(Paths.sourcesDirPath(Components.cblas));
+    paths.push(Paths.sourcesDirPath(Components.cblas));
+    paths.push(Paths.sourcesDirPath(Components.ssys));
+    paths.push(Paths.sourcesDirPath(Components.scoll));
     return paths;
   }
 
