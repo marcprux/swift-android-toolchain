@@ -23,17 +23,18 @@ on:
 
 jobs:
   build:
-    name: Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }}
+    name: Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }} xcode ${{ matrix.xcode }}
     # 5 hours (max is 360, which isn't sufficient)
     timeout-minutes: 720 
 
     strategy:
       fail-fast: false
+      max-parallel: 10
       matrix:
         include:
-          - enabled: true
-            swift: '5.5.2'
+          - swift: '5.5.2'
             xcode: '13.3.1'
+
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -58,9 +59,7 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-        env:
-          - enabled: false
-            swift: '5.5.3'
+          - swift: '5.5.3'
             xcode: '14.1'
 
             ndk: 'r21e'
@@ -85,8 +84,59 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - enabled: false
-            swift: '5.5.3'
+          - swift: '5.5.3'
+            xcode: '14.1'
+
+            #ndk: 'r21e'
+            #ndkversion: '21.4.7075529'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            #ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
+            #ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
+
+            tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
+            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
+            tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
+            tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        'a29154a4137747bdbfe83ca26db4b24f8c4fcd31'
+            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
+            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
+            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
+
+          - swift: '5.7.1'
+            xcode: '14.1'
+
+            #ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
+            #ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
+
+            # https://github.com/apple/swift/releases/tag/swift-5.7.1-RELEASE
+            tag-swift:      'fc307ff159fe330f77f9be20fc29d03e11b14c6e'
+            tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
+            tag-foundation: '3f3537a5cd34d8a0ec624c2d22022037fa79d460'
+            tag-llvm:       '65411f5b90f6f72550341b4856e9b678f4162d83'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        'e7b2c1a261ee74cc1214ee4e97a7706e7c05f7d1'
+            tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
+            tag-tsc:        'afc0938503bac012f76ceb619d031f63edc4c5f7'
+            tag-sd:         '82b274af66cfbb8f3131677676517b34d01e30fd'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
+
+
+
+        # env just hides the jobs we don't want to run
+        env:
+          - swift: '5.5.3'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -108,8 +158,7 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - enabled: false
-            swift: '5.6'
+          - swift: '5.6'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -132,8 +181,7 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - enabled: false
-            swift: '5.6.3'
+          - swift: '5.6.3'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -156,8 +204,7 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - enabled: false
-            swift: '5.7'
+          - swift: '5.7'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -177,30 +224,6 @@ jobs:
             tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
             tag-tsc:        '184eba382f6abbb362ffc02942d790ff35019ad4'
             tag-sd:         '719426df790661020de657bf38beb2a8b1de5ad3'
-            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
-          - enabled: false
-            swift: '5.7.1'
-            xcode: '14.1'
-
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-
-            # https://github.com/apple/swift/releases/tag/swift-5.7.1-RELEASE
-            tag-swift:      'fc307ff159fe330f77f9be20fc29d03e11b14c6e'
-            tag-dispatch:   'b602cbb26c5cee1aac51021aa2cd6a30a03b1bd3'
-            tag-foundation: '3f3537a5cd34d8a0ec624c2d22022037fa79d460'
-            tag-llvm:       '65411f5b90f6f72550341b4856e9b678f4162d83'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        'e7b2c1a261ee74cc1214ee4e97a7706e7c05f7d1'
-            tag-llb:        '564424db5fdb62dcb5d863bdf7212500ef03a87b'
-            tag-tsc:        'afc0938503bac012f76ceb619d031f63edc4c5f7'
-            tag-sd:         '82b274af66cfbb8f3131677676517b34d01e30fd'
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
@@ -254,14 +277,20 @@ jobs:
               cp -a /tmp/droid/AndroidNDK*.app/Contents/NDK ${NDKDIR}
               umount /tmp/droid
             else
-              unzip -qq $(basename ${{ matrix.ndkurl }}) -d ${NDKDIR}
+              # the zip file has a root of "/android-ndk-r21e/toolchains"
+              # so unzip it to a temp file then move it into
+              # ~/Library/Android/sdk/ndk/21.4.7075529/toolchains
+              # instead of:
+              # ~/Library/Android/sdk/ndk/21.4.7075529/android-ndk-r21e/toolchains
+              unzip -qq $(basename ${{ matrix.ndkurl }}) -d ${NDKDIR}.tmp
+              mv -v ${NDKDIR}.tmp/android-ndk-${{ matrix.ndk }} ${NDKDIR}
+              rmdir ${NDKDIR}.tmp
             fi
 
             du -skh ${NDKDIR}
             #mv ${{ matrix.ndkversion }} ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }}
           fi
 
-          # no ndkurl: use pre-installed
           sudo ln -vsif ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} /usr/local/ndk/${{ matrix.ndkversion }} 
 
           ls -lad /usr/local/ndk/${{ matrix.ndkversion }}
