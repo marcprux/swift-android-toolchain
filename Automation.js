@@ -201,10 +201,10 @@ module.exports = class Automation extends Tool {
 
   /** @private */
   clean() {
-    this.runComponentAction("xml", "clean");
     this.runComponentAction("llvm", "clean");
     this.runComponentAction("cmark", "clean");
     this.runComponentAction("icu", "clean");
+    this.runComponentAction("xml", "clean");
     this.runComponentAction("ssl", "clean");
     this.runComponentAction("curl", "clean");
     this.runComponentAction("cblas", "clean");
@@ -215,9 +215,9 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("tsc", "clean");
     this.runComponentAction("llb", "clean");
     this.runComponentAction("spm", "clean");
+    this.runComponentAction("ssys", "clean");
     this.runComponentAction("scoll", "clean");
     this.runComponentAction("sd", "clean");
-    this.runComponentAction("ssys", "clean");
     this.runComponentAction("sap", "clean");
     this.runComponentAction("yams", "clean");
   }
