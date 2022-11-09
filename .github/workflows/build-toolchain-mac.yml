@@ -31,32 +31,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- swift: '5.5.2'
-            #xcode: '13.3.1'
-            #ndk: 'r21e'
-            #ndkversion: '21.4.7075529'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
-
-            ## https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
-            #tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
-            #tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
-            #tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
-            #tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
-            #tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            #tag-spm:        '7a1f113534689c77b3a4110288478580b7b8d91c'
-            #tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
-            #tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
-            #tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
-            #tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            #tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
           - swift: '5.5.3'
             xcode: '14.1'
 
@@ -82,6 +56,32 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
+        exclude:
+          - swift: '5.5.2'
+            xcode: '13.3.1'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            #ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
+            #ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+
+            # https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
+            tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
+            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
+            tag-foundation: '491a217baa8a0ef4ae9c8603c434c069cc090c50'
+            tag-llvm:       'c315411fac10439aa7a09dce976b5716af9f149c'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        '7a1f113534689c77b3a4110288478580b7b8d91c'
+            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
+            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
+            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.5.3'
             xcode: '14.1'
@@ -236,8 +236,8 @@ jobs:
 
           if [ ! -z "${{ matrix.ndkurl }}" ]; then
             NDKDIR=~/Library/Android/sdk/ndk/${{ matrix.ndkversion }}
-            echo "downloading: ${{ matrix.ndkurl }} to ${NDKDIR}"
-            curl -O -fsSL "${{ matrix.ndkurl }}"
+            echo "Downloading: ${{ matrix.ndkurl }} to ${NDKDIR}"
+            curl --stats -O -fsSL "${{ matrix.ndkurl }}"
 
             # move any pre-existing NDK out of the way
             mv -f ${NDKDIR} ${NDKDIR}.prev || true
@@ -258,7 +258,13 @@ jobs:
           # no ndkurl: use pre-installed
           sudo ln -vsif ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} /usr/local/ndk/${{ matrix.ndkversion }} 
 
-          ls -la /usr/local/ndk/${{ matrix.ndkversion }}
+          ls -lad /usr/local/ndk/${{ matrix.ndkversion }}
+          ls -lad /usr/local/ndk/${{ matrix.ndkversion }}/toolchains
+          ls -lad /usr/local/ndk/${{ matrix.ndkversion }}/toolchains/llvm
+          ls -lad /usr/local/ndk/${{ matrix.ndkversion }}/toolchains/llvm/prebuilt
+          ls -lad /usr/local/ndk/${{ matrix.ndkversion }}/toolchains/llvm/prebuilt/darwin-x86_64
+
+          ls -lart /usr/local/ndk/${{ matrix.ndkversion }}/toolchains/llvm/prebuilt/darwin-x86_64
 
       - name: Cache Toolchain
         # we don't cache because they are over 5gb (~5.3gb),
