@@ -60,16 +60,15 @@ jobs:
           - swift: '5.5.3'
             xcode: '14.1'
 
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            #ndk: 'r21e'
+            #ndkversion: '21.4.7075529'
+            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
             #ndk: 'r23c'
             #ndkversion: '23.2.8568313'
             #ndk: 'r24'
             #ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
 
             tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
             tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
@@ -87,13 +86,12 @@ jobs:
           - swift: '5.5.3'
             xcode: '14.1'
 
-            ndk: 'r23c'
-            ndkversion: '23.2.8568313'
+            #ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
             #ndk: 'r24'
             #ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
 
             tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
             tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
@@ -134,13 +132,12 @@ jobs:
           - swift: '5.6.3'
             xcode: '14.1'
 
-            ndk: 'r23c'
-            ndkversion: '23.2.8568313'
+            #ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
             #ndk: 'r24'
             #ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
 
             # https://github.com/apple/swift/releases/tag/swift-5.6.3-RELEASE
             tag-swift:      '2078f75754841cf7fd8b05983f29eeb010caf2ca'
@@ -160,11 +157,10 @@ jobs:
 
             #ndk: 'r23c'
             #ndkversion: '23.2.8568313'
-            ndk: 'r24'
-            ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            #ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
 
             # https://github.com/apple/swift/releases/tag/swift-5.7-RELEASE
             tag-swift:      '50794e1ae31a08b492cc717ead6f99e7d6932e21'
@@ -188,7 +184,6 @@ jobs:
             #ndkversion: '24.0.8215888'
             ndk: 'r25b'
             ndkversion: '25.1.8937393'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
 
             # https://github.com/apple/swift/releases/tag/swift-5.7.1-RELEASE
             tag-swift:      'fc307ff159fe330f77f9be20fc29d03e11b14c6e'
@@ -239,37 +234,31 @@ jobs:
           # android-platform-tools contains: 23.2.8568313 24.0.8215888 25.1.8937393
           ls -1 ~/Library/Android/sdk/ndk/
 
-          ls -la ~/Library/Android/sdk/ndk/*/toolchains/llvm/prebuilt/darwin-x86_64/
-          ls -la ~/Library/Android/sdk/ndk/*/toolchains/llvm/prebuilt/darwin-x86_64/bin/
-
           if [ ! -z "${{ matrix.ndkurl }}" ]; then
+            NDKDIR=~/Library/Android/sdk/ndk/${{ matrix.ndkversion }}
+            echo "downloading: ${{ matrix.ndkurl }} to ${NDKDIR}"
             curl -O -fsSL "${{ matrix.ndkurl }}"
+
+            # move any pre-existing NDK out of the way
+            mv -f ${NDKDIR} ${NDKDIR}.prev || true
+
             # recent NDKs are packed in a dmg which we need to mount and extract
             if [[ "${{ matrix.ndkurl }}" = *.dmg ]] ; then
               hdiutil attach -plist -nobrowse -readonly -mountpoint /tmp/droid "$(basename ${{ matrix.ndkurl }})"
-              cp -a /tmp/droid/AndroidNDK*.app/Contents/NDK ./${{ matrix.ndkversion }}
+              cp -a /tmp/droid/AndroidNDK*.app/Contents/NDK ${NDKDIR}
               umount /tmp/droid
             else
-              unzip -qq $(basename ${{ matrix.ndkurl }}) -d ./${{ matrix.ndkversion }}
+              unzip -qq $(basename ${{ matrix.ndkurl }}) -d ${NDKDIR}
             fi
 
-            du -skh ./${{ matrix.ndkversion }}
-  
-            ls -la /usr/local/ndk/
-
-            sudo ln -vsif ${GITHUB_WORKSPACE}/${{ matrix.ndkversion }}/android-ndk-${{ matrix.ndk }} /usr/local/ndk/${{ matrix.ndkversion }} 
-
-            #echo $(ls /usr/local/ndk/${{ matrix.ndkversion }})
-            #echo $(ls /Users/runner/Library/Android/sdk/ndk/)
-
-            # 23.2.8568313 24.0.8215888 25.1.8937393
-            echo $(ls /Users/runner/Library/Android/sdk/ndk/${{ matrix.ndkversion }})
-          else
-            # no ndkurl: use pre-installed
-            sudo ln -vsif ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} /usr/local/ndk/${{ matrix.ndkversion }} 
-
-            ls -la /usr/local/ndk/${{ matrix.ndkversion }}
+            du -skh ${NDKDIR}
+            #mv ${{ matrix.ndkversion }} ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }}
           fi
+
+          # no ndkurl: use pre-installed
+          sudo ln -vsif ~/Library/Android/sdk/ndk/${{ matrix.ndkversion }} /usr/local/ndk/${{ matrix.ndkversion }} 
+
+          ls -la /usr/local/ndk/${{ matrix.ndkversion }}
 
       - name: Cache Toolchain
         # we don't cache because they are over 5gb (~5.3gb),
