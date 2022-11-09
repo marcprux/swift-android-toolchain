@@ -56,7 +56,9 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-        XXX:
+      # sections can be moved back and forth into matrix.include
+      matrix-disabled:
+        include:
           - swift: '5.5.2'
             xcode: '13.3.1'
             ndk: 'r21e'
@@ -105,29 +107,28 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          #- swift: '5.6'
-            #xcode: '14.1'
+          - swift: '5.6'
+            xcode: '14.1'
 
             #ndk: 'r23c'
             #ndkversion: '23.2.8568313'
             #ndk: 'r24'
             #ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            ndk: 'r25b'
+            ndkversion: '25.1.8937393'
 
-            ## https://github.com/apple/swift/releases/tag/swift-5.6-RELEASE
-            #tag-swift:      '8c610f7f19b9c4e0651f95fa7c4852e5d3b7a03e'
-            #tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
-            #tag-foundation: '061007026b6a12039bede2c6419753c8630741d4'
-            #tag-llvm:       '900c3b6b832d1d0e7d6e1220f6ba001802cbe0cc'
-            #tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            #tag-spm:        '6647fa09d6042b29cbb115eecf6f292beb7f6837'
-            #tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
-            #tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
-            #tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
-            #tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            #tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
+            # https://github.com/apple/swift/releases/tag/swift-5.6-RELEASE
+            tag-swift:      '8c610f7f19b9c4e0651f95fa7c4852e5d3b7a03e'
+            tag-dispatch:   '880bf655b65595862bed8fc5cbd922f60765e8b0'
+            tag-foundation: '061007026b6a12039bede2c6419753c8630741d4'
+            tag-llvm:       '900c3b6b832d1d0e7d6e1220f6ba001802cbe0cc'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        '6647fa09d6042b29cbb115eecf6f292beb7f6837'
+            tag-llb:        'acd686530e56122d916acd49a166beb9198e9b87'
+            tag-tsc:        'f6c8048a76e280d0f14cc378b8b5c3cfb77c61fb'
+            tag-sd:         '9982f32f96a2e0e597d1b4a0af4a7e997dc471be'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.6.3'
             xcode: '14.1'
@@ -237,7 +238,7 @@ jobs:
           if [ ! -z "${{ matrix.ndkurl }}" ]; then
             NDKDIR=~/Library/Android/sdk/ndk/${{ matrix.ndkversion }}
             echo "Downloading: ${{ matrix.ndkurl }} to ${NDKDIR}"
-            curl --stats -O -fsSL "${{ matrix.ndkurl }}"
+            curl -O -fsSL "${{ matrix.ndkurl }}"
 
             # move any pre-existing NDK out of the way
             mv -f ${NDKDIR} ${NDKDIR}.prev || true
