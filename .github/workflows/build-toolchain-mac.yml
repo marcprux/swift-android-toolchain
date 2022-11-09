@@ -298,15 +298,15 @@ jobs:
           /usr/local/ndk/${{ matrix.ndkversion }}/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang --version
 
       - name: Cache Toolchain
-        # we don't cache because they are over 5gb (~5.3gb),
+        # Don't cache the entire Toolchain because it is over 5gb (~5.3gb),
         # and GH actions only offers 10gb per-repo cache persistence,
-        # so they are constantly thrashing and never used
-        if: false
+        # so they are constantly thrashing and never used.
+        # Just caching the ToolChain/Build/ folder gives us some savings.
         uses: ./.github/actions/cache-always
         with:
           key: swift-android-toolchain-cache-swift-${{ matrix.swift }}-ndk-${{ matrix.ndk }}
           path: |
-            ./ToolChain
+            ./ToolChain/Build
 
       - name: Check before build
         run: |
@@ -343,14 +343,17 @@ jobs:
         # e.g.: Swift version 5.5.2 (swift-5.5.2-RELEASE) Target: x86_64-apple-darwin21.6.0
         run: |
           ./ToolChain/swift-android-toolchain/usr/bin/swift --version
-          mv ./ToolChain/swift-android-toolchain.tar.gz ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
+          ./ToolChain/swift-android-toolchain/usr/bin/swiftc-x86_64-linux-android --version
+          ./ToolChain/swift-android-toolchain/usr/bin/swiftc-aarch64-linux-android --version
+
+          mv ./ToolChain/swift-android-toolchain.tar.gz ./swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
       - name: Upload Archive
         uses: actions/upload-artifact@v3
         with:
           #name: Toolchain build archive
           #path: ./ToolChain/swift-android-toolchain.tar.gz
-          path: ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
+          path: ./swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
       # Create or update a release for this tag
       # Releases consist of all the toolchains (NDK variants)
