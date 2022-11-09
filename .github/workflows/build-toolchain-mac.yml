@@ -30,36 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        enabled: [true]
+        exclude:
+          - enabled: false
+
         include:
-          - swift: '5.5.3'
-            xcode: '14.1'
-
-            ndk: 'r21e'
-            ndkversion: '21.4.7075529'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
-            #ndk: 'r23c'
-            #ndkversion: '23.2.8568313'
-            #ndk: 'r24'
-            #ndkversion: '24.0.8215888'
-            #ndk: 'r25b'
-            #ndkversion: '25.1.8937393'
-
-            tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
-            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
-            tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
-            tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
-            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
-            tag-spm:        'a29154a4137747bdbfe83ca26db4b24f8c4fcd31'
-            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
-            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
-            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
-            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
-            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
-
-      # sections can be moved back and forth into matrix.include
-      matrix-disabled:
-        include:
-          - swift: '5.5.2'
+          - enabled: false
+            swift: '5.5.2'
             xcode: '13.3.1'
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
@@ -85,7 +62,34 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - swift: '5.5.3'
+          - enabled: false
+            swift: '5.5.3'
+            xcode: '14.1'
+
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            #ndk: 'r23c'
+            #ndkversion: '23.2.8568313'
+            #ndk: 'r24'
+            #ndkversion: '24.0.8215888'
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
+
+            tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
+            tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
+            tag-foundation: 'ffeb0f8af03165488ab2b818cd49d943922687a3'
+            tag-llvm:       'e560cdd64bd089f8c27d7f8e353f78bb6e53017f'
+            tag-cmark:      '9c8096a23f44794bde297452d87c455fc4f76d42'
+            tag-spm:        'a29154a4137747bdbfe83ca26db4b24f8c4fcd31'
+            tag-llb:        '83c4bcb8dfca48cc065325287b55d08ff7b26428'
+            tag-tsc:        '3b586ce12865db205081acdcea79fe5509b28152'
+            tag-sd:         '86c54dacd270e0c43374c0cb9b2ceb2924c9ea72'
+            tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
+            tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
+
+          - enabled: false
+            swift: '5.5.3'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -107,7 +111,8 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - swift: '5.6'
+          - enabled: false
+            swift: '5.6'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -130,7 +135,8 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - swift: '5.6.3'
+          - enabled: false
+            swift: '5.6.3'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -153,7 +159,8 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - swift: '5.7'
+          - enabled: false
+            swift: '5.7'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -176,7 +183,8 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          - swift: '5.7.1'
+          - enabled: false
+            swift: '5.7.1'
             xcode: '14.1'
 
             #ndk: 'r23c'
@@ -208,6 +216,8 @@ jobs:
       #group: ${{ matrix.ndk }}-${{ matrix.swift }}-${{ matrix.xcode }}-${{ github.head_ref || github.run_id }}
       #cancel-in-progress: true
       #cancel-in-progress: false
+
+    if: ${{ matrix.enabled }}
 
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
