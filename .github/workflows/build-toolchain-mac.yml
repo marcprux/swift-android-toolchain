@@ -36,6 +36,7 @@ jobs:
           - swift: '5.5.2'
             xcode: '13.3.1'
 
+            # r21e needed for clbas aarch64-linux-android-ar
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
