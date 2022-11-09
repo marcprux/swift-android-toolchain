@@ -169,8 +169,8 @@ module.exports = class Automation extends Tool {
 
   /** @private */
   stage1(action) {
-    this.runComponentAction("xml", action);
     this.runComponentAction("llvm", action);
+    this.runComponentAction("xml", action);
     this.runComponentAction("icu", action);
     this.runComponentAction("ssl", action);
     this.runComponentAction("curl", action);
