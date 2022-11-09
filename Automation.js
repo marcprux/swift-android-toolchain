@@ -148,7 +148,7 @@ module.exports = class Automation extends Tool {
       new SwiftDriverBuilder().runAction(action);
     } else if (component == "sc") {
       new SwiftCryptoBuilder().runAction(action);
-    } else if (component == "ss") {
+    } else if (component == "ssys") {
       new SwiftSystemBuilder().runAction(action);
     } else if (component == "stage2") {
       this.stage2(action);
@@ -217,7 +217,7 @@ module.exports = class Automation extends Tool {
     this.runComponentAction("spm", "clean");
     this.runComponentAction("scoll", "clean");
     this.runComponentAction("sd", "clean");
-    this.runComponentAction("ss", "clean");
+    this.runComponentAction("ssys", "clean");
     this.runComponentAction("sap", "clean");
     this.runComponentAction("yams", "clean");
   }
