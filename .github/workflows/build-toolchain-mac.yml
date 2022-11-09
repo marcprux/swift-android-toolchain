@@ -30,8 +30,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        enabled: [true]
-
         include:
           - enabled: true
             swift: '5.5.2'
@@ -60,7 +58,7 @@ jobs:
             tag-ss:         '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-        exclude:
+        env:
           - enabled: false
             swift: '5.5.3'
             xcode: '14.1'
