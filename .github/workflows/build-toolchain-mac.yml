@@ -21,6 +21,12 @@ on:
 # 20.1.5948944: https://dl.google.com/android/repository/android-ndk-r20b-darwin-x86_64.zip
 # 19.2.5345600: https://dl.google.com/android/repository/android-ndk-r19c-darwin-x86_64.zip
 
+# NDK r25b is missing -ar tools needed for cblas
+# NDK r25b raises: install: .libs/libxml2.so: No such file or directory
+
+# XCode 14.1 raises: /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift-tools-support-core/Sources/TSCUtility/FSWatch.swift:655:15: error: cannot assign value of type 'Thread' to type 'Thread?'
+
+
 jobs:
   build:
     name: Swift ${{ matrix.swift }} NDK ${{ matrix.ndk }} xcode ${{ matrix.xcode }}
@@ -62,7 +68,7 @@ jobs:
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.5.3'
-            xcode: '14.1'
+            xcode: '13.3.1'
 
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
@@ -87,17 +93,17 @@ jobs:
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.5.3'
-            xcode: '14.1'
+            xcode: '13.3.1'
 
-            #ndk: 'r21e'
-            #ndkversion: '21.4.7075529'
-            #ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
             #ndk: 'r23c'
             #ndkversion: '23.2.8568313'
             #ndk: 'r24'
             #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
 
             tag-swift:      '79f723e49c485ad5d1ccbb6aeee98b9c9118dd22'
             tag-dispatch:   '5cc1c6679822fd18368664482a5bba57270467f4'
@@ -112,14 +118,17 @@ jobs:
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
           - swift: '5.7.1'
-            xcode: '14.1'
+            xcode: '13.3.1'
 
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
             #ndk: 'r23c'
             #ndkversion: '23.2.8568313'
             #ndk: 'r24'
             #ndkversion: '24.0.8215888'
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
+            #ndk: 'r25b'
+            #ndkversion: '25.1.8937393'
 
             # https://github.com/apple/swift/releases/tag/swift-5.7.1-RELEASE
             tag-swift:      'fc307ff159fe330f77f9be20fc29d03e11b14c6e'
@@ -365,7 +374,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Creating release: ${GITHUB_REF#refs/tags/}"
-          RELNAME="swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}"
+          RELNAME="swift-${{ matrix.swift }}-android-toolchain"
           gh release create "${RELNAME}" --title "Swift ${{ matrix.swift }} Android Toolchains" || true
           gh release upload "${RELNAME}" --clobber -- ./ToolChain/swift-${{ matrix.swift }}-android-ndk-${{ matrix.ndk }}-xcode-${{ matrix.xcode }}-toolchain.tar.gz
 
