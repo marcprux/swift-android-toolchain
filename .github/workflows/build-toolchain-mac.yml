@@ -22,13 +22,7 @@ on:
 
 # 5.7.1 / ndk r21e / xcode 13.3.1 ERROR:
 #
-#2022-11-10T17:05:45.6073310Z [32mpatch --backup /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift/stdlib/private/CMakeLists.txt /Users/runner/work/swift-android-toolchain/swift-android-toolchain/Patches/swift/stdlib/private/CMakeLists.txt.diff[0m
-#2022-11-10T17:05:45.6180180Z patching file /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift/stdlib/private/CMakeLists.txt
-#2022-11-10T17:05:45.6181000Z Hunk #1 FAILED at 10.
-#2022-11-10T17:05:45.6191490Z 1 out of 1 hunk FAILED -- saving rejects to file /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift/stdlib/private/CMakeLists.txt.rej
-#2022-11-10T17:05:45.6203890Z [36mExecution of command is failed:[0m
-#2022-11-10T17:05:45.6205220Z [31mpatch --backup /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift/stdlib/private/CMakeLists.txt /Users/runner/work/swift-android-toolchain/swift-android-toolchain/Patches/swift/stdlib/private/CMakeLists.txt.diff[0m
-#2022-11-10T17:05:45.6206140Z [32m
+#2022-11-10T17:05:45.6205220Z patch --backup /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift/stdlib/private/CMakeLists.txt /Users/runner/work/swift-android-toolchain/swift-android-toolchain/Patches/swift/stdlib/private/CMakeLists.txt.diff
 
 
 # NDKS: VERSION(*=LTS) (Android API): download URL
