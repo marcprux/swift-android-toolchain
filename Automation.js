@@ -242,9 +242,9 @@ module.exports = class Automation extends Tool {
     paths.push(Paths.sourcesDirPath(Components.sc));
     paths.push(Paths.sourcesDirPath(Components.sd));
     paths.push(Paths.sourcesDirPath(Components.yams));
-    paths.push(Paths.sourcesDirPath(Components.cblas));
     paths.push(Paths.sourcesDirPath(Components.ssys));
     paths.push(Paths.sourcesDirPath(Components.scoll));
+    //paths.push(Paths.sourcesDirPath(Components.cblas));
     return paths;
   }
 
