@@ -36,6 +36,12 @@ on:
 
 # NDK r25b is missing -ar tools needed for cblas
 # NDK r25b raises: install: .libs/libxml2.so: No such file or directory
+
+# Swift 5.5.2 NDK r21e xcode 13.3.1: PASS
+# Swift 5.5.2 NDK r25b xcode 13.3.1: FAIL with: install: .libs/libxml2.so: No such file or directory
+# Swift 5.5.2 NDK r25b xcode 14.1: FAIL with: install: .libs/libxml2.so: No such file or directory
+
+
 # the LAST version to include aarch64-linux-android-ar is android-ndk-r22b
 
 # XCode 14.1 raises: /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift-tools-support-core/Sources/TSCUtility/FSWatch.swift:655:15: error: cannot assign value of type 'Thread' to type 'Thread?'
