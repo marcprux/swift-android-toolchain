@@ -42,6 +42,11 @@ on:
 # Swift 5.5.2 NDK r25b xcode 14.1: FAIL with: install: .libs/libxml2.so: No such file or directory
 
 
+# Swift 5.7.1 NDK 21e xcode 14.1: FAIL
+# 2022-11-11T18:17:35.6822200Z /Applications/Xcode_14.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/lib/swift/_StringProcessing.swiftmodule/x86_64-apple-macos.swiftinterface:18:54: error: 'some' types are only implemented for the declared type of properties and subscripts and the return type of functions
+# 2022-11-11T18:17:35.6823290Z   @_disfavoredOverload public func contains(_ regex: some RegexComponent) -> Swift.Bool
+
+
 # the LAST version to include aarch64-linux-android-ar is android-ndk-r22b
 
 # XCode 14.1 raises: /Users/runner/work/swift-android-toolchain/swift-android-toolchain/ToolChain/Sources/swift-tools-support-core/Sources/TSCUtility/FSWatch.swift:655:15: error: cannot assign value of type 'Thread' to type 'Thread?'
@@ -80,7 +85,6 @@ jobs:
           - swift: '5.5.2'
             xcode: '13.3.1'
 
-            # r21e needed for clbas aarch64-linux-android-ar
             ndk: 'r21e'
             ndkversion: '21.4.7075529'
             ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
@@ -98,13 +102,13 @@ jobs:
             tag-ssys:       '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          # attempt at 5.5.2 w/ r25b
+          # attempt at 5.5.2 w/ xcode 14.1
           - swift: '5.5.2'
-            xcode: '13.3.1'
+            xcode: '14.1'
 
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
 
             # https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
             tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
@@ -119,13 +123,13 @@ jobs:
             tag-ssys:       '025bcb1165deab2e20d4eaba79967ce73013f496'
             tag-scoll:      'f504716c27d2e5d4144fa4794b12129301d17729'
 
-          # attempt at 5.5.2 w/ r25b w/ xcode 14.1
-          - swift: '5.5.2'
+          # attempt at 5.5.3 w/ xcode 14.1
+          - swift: '5.5.3'
             xcode: '14.1'
 
-            ndk: 'r25b'
-            ndkversion: '25.1.8937393'
-            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r25b-darwin.dmg'
+            ndk: 'r21e'
+            ndkversion: '21.4.7075529'
+            ndkurl: 'https://dl.google.com/android/repository/android-ndk-r21e-darwin-x86_64.zip'
 
             # https://github.com/apple/swift/releases/tag/swift-5.5.2-RELEASE
             tag-swift:      '4c45f525dc315a618868caae7d976d95359700a4'
